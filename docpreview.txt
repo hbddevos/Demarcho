@@ -1,0 +1,32 @@
+preview(){
+    pdf_file = $refs.pdf.files[0];
+    console.log(URL.createObjectURL(pdf_file));
+pdf_url = URL.createObjectURL(pdf_file);
+$refs.viewer.setAttribute('src', pdf_url);
+}
+
+
+@if ($photo) 
+    <span class="btn btn-sm btn-primary" @click.prevent='preview'>preview</span>
+    <div style="width: 100px; height:100px;">
+{{-- <img src="{{ $photo->temporaryUrl() }}"> --}}
+<div style="clear:both">
+
+
+<embed
+x-ref='viewer'
+type="application/pdf"
+src=""
+width="640"
+height="480"
+title="Title of my video" />
+
+</div>
+{{-- <span>{{ $photo->getClientOriginalName() }}</span> --}}
+</div>
+@endif
+
+
+<input x-ref='pdf' wire:model='photo' type="file" class="form-control" name="photo" id="photo" />
+
+
